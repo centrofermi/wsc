@@ -31,6 +31,12 @@
 *.out
 *.app
 
+# VCPKG exported dependencies folder
+wsc-dependencies
+
+# VIM sessions
+*.vim
+
 # Build folders
 build*/
 
