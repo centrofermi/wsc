@@ -24,7 +24,7 @@ int gui(asio::io_context& ctx)
   auto const ports = probe_filter(ctx, enumerate());
 
   form fm { API::make_center(600, 400) };
-  fm.caption("EEE Weather Control Station");
+  fm.caption("EEE Weather Station Control");
 
   place vbox { fm };
   vbox.div("<vert vbox gap=10 margin=[10,10,10,10] arrange=[70,110,variable]>");
