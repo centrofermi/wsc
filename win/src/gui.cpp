@@ -94,6 +94,20 @@ int gui(asio::io_context& ctx)
     update_btn.enabled(true);
   });
 
+  start_btn.events().click([&]() {
+    // do something for connection
+    start_btn.enabled(false);
+    stop_btn.enabled(true);
+    update_btn.enabled(false);
+  });
+
+  stop_btn.events().click([&]() {
+    // do something for connection
+    stop_btn.enabled(false);
+    start_btn.enabled(true);
+    update_btn.enabled(true);
+  });
+
   com_update();
 
   exec();
