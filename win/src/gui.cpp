@@ -59,6 +59,9 @@ int gui(asio::io_context& ctx)
 
   out_mgmt["daq"] << start_btn << stop_btn;
 
+  filebox fb(true);
+  fb.add_filter( ("output file"), ("*.txt"));
+
   // Current values group
   group curr_mgmt{ fm, "Current readings", true };
   curr_mgmt.div("<values gap=5 margin=[10,10,10,10]>");
@@ -106,6 +109,12 @@ int gui(asio::io_context& ctx)
     stop_btn.enabled(false);
     start_btn.enabled(true);
     update_btn.enabled(true);
+  });
+
+  browse_btn.events().click([&]() {
+    if (fb()) {
+      path.reset(fb.file());
+    }
   });
 
   com_update();
