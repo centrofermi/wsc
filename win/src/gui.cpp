@@ -86,6 +86,14 @@ int gui(asio::io_context& ctx)
     com.option(0);
   };
 
+  update_btn.events().click([&]() {
+    update_btn.enabled(false);
+
+    com_update();
+
+    update_btn.enabled(true);
+  });
+
   com_update();
 
   exec();
