@@ -61,6 +61,8 @@ int gui(asio::io_context& ctx)
   button start_btn{ out_mgmt, "Start!" };
   button stop_btn{ out_mgmt, "Stop" };
 
+  stop_btn.enabled(false);
+
   out_mgmt["daq"] << start_btn << stop_btn;
 
   // Current values group
