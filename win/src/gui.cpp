@@ -31,7 +31,7 @@ int gui(asio::io_context& ctx)
 
   // Connection group
   group conn_mgmt { fm, "Connection", true };
-  conn_mgmt.div("<conn gap=5 margin=[10,10,10,10] arrange=[50,100,100,100]>");
+  conn_mgmt.div("<conn gap=5 margin=[10,10,10,10] arrange=[50,100,100,100,100]>");
   label port_l { conn_mgmt, "Port: " };
   combox com { conn_mgmt, "", true };
   for (auto&& port : ports) {
@@ -40,11 +40,12 @@ int gui(asio::io_context& ctx)
 
   com.option(0);
 
+  button update_btn{ conn_mgmt, "Update" };
   button connect_btn{ conn_mgmt, "Connect!" };
   button disconnect_btn{ conn_mgmt, "Disconnect" };
   disconnect_btn.enabled(false);
 
-  conn_mgmt["conn"] << port_l << com << connect_btn << disconnect_btn;
+  conn_mgmt["conn"] << port_l << com << update_btn << connect_btn << disconnect_btn;
 
   // Output group
   group out_mgmt{ fm, "Output", true };
