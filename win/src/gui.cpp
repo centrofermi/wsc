@@ -21,7 +21,6 @@ int gui(asio::io_context& ctx)
 {
   using namespace nana;
 
-  auto const ports = probe_filter(ctx, enumerate());
 
   form fm { API::make_center(600, 400) };
   fm.caption("EEE Weather Station Control");
@@ -34,11 +33,6 @@ int gui(asio::io_context& ctx)
   conn_mgmt.div("<conn gap=5 margin=[10,10,10,10] arrange=[50,100,100,100,100]>");
   label port_l { conn_mgmt, "Port: " };
   combox com { conn_mgmt, "", true };
-  for (auto&& port : ports) {
-    com.push_back(port);
-  }
-
-  com.option(0);
 
   button update_btn{ conn_mgmt, "Update" };
 
@@ -75,6 +69,25 @@ int gui(asio::io_context& ctx)
   vbox.collocate();
 
   fm.show();
+
+  // Code associated with GUI events
+  auto com_update = [&]() {
+    auto const ports = probe_filter(ctx, enumerate());
+
+    com.clear();
+    for (auto&& port : ports) {
+      com.push_back(port);
+    }
+
+    if (ports.empty()) {
+      com.push_back("No port found");
+    }
+
+    com.option(0);
+  };
+
+  com_update();
+
   exec();
 
   return EXIT_SUCCESS;
