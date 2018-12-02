@@ -41,11 +41,8 @@ int gui(asio::io_context& ctx)
   com.option(0);
 
   button update_btn{ conn_mgmt, "Update" };
-  button connect_btn{ conn_mgmt, "Connect!" };
-  button disconnect_btn{ conn_mgmt, "Disconnect" };
-  disconnect_btn.enabled(false);
 
-  conn_mgmt["conn"] << port_l << com << update_btn << connect_btn << disconnect_btn;
+  conn_mgmt["conn"] << port_l << com << update_btn;
 
   // Output group
   group out_mgmt{ fm, "Output", true };
