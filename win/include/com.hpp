@@ -13,6 +13,7 @@ using ComPorts = std::vector<std::string>;
 using ComPort  = asio::serial_port;
 
 ComPorts enumerate();
+void init_arduino(ComPort& port);
 ComPorts probe_filter(asio::io_context& ctx, ComPorts const& in);
 
 } // ns wsc
