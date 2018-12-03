@@ -60,7 +60,7 @@ int gui(asio::io_context& ctx)
   out_mgmt["daq"] << start_btn << stop_btn;
 
   filebox fb(true);
-  fb.add_filter( ("output file"), ("*.txt"));
+  fb.add_filter( ("output file"), ("dbase.csv"));
 
   // Current values group
   group curr_mgmt{ fm, "Current readings", true };
