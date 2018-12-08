@@ -97,9 +97,13 @@ int gui(asio::io_context& ctx)
 
   update_btn.events().click([&]() {
     update_btn.enabled(false);
+    start_btn.enabled(false);
+    com.enabled(false);
 
     com_update();
 
+    com.enabled(true);
+    start_btn.enabled(true);
     update_btn.enabled(true);
   });
 
