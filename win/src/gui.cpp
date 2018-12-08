@@ -1,5 +1,6 @@
 #include "gui.hpp"
 #include "com.hpp"
+#include "worker.hpp"
 
 #include <algorithm>
 
@@ -102,18 +103,45 @@ int gui(asio::io_context& ctx)
     update_btn.enabled(true);
   });
 
+  Worker worker;
+
   start_btn.events().click([&]() {
-    // do something for connection
+    worker.run(
+        com.text(com.option())
+      , fb.file()
+      , [&](std::string const& message) {
+          values.append(message, true);
+        }
+      , [&](std::string const& message) {
+          values.append(message, true);
+          worker.stop();
+
+          com.enabled(true);
+          stop_btn.enabled(false);
+          start_btn.enabled(true);
+          update_btn.enabled(true);
+          browse_btn.enabled(true);
+          path.enabled(true);
+        }
+    );
+
+    com.enabled(false);
     start_btn.enabled(false);
     stop_btn.enabled(true);
     update_btn.enabled(false);
+    browse_btn.enabled(false);
+    path.enabled(false);
   });
 
   stop_btn.events().click([&]() {
-    // do something for connection
+    worker.stop();
+
+    com.enabled(true);
     stop_btn.enabled(false);
     start_btn.enabled(true);
     update_btn.enabled(true);
+    browse_btn.enabled(true);
+    path.enabled(true);
   });
 
   browse_btn.events().click([&]() {
