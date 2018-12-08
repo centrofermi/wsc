@@ -18,7 +18,7 @@ set(NANA_LIBRARIES
   ${NANA_LIBRARY}
 )
 
-add_executable(wsc WIN32 src/main.cpp src/gui.cpp src/com.cpp)
+add_executable(wsc WIN32 src/main.cpp src/gui.cpp src/com.cpp src/worker.cpp)
 target_link_libraries(wsc ${NANA_LIBRARIES})
 set_target_properties(
   wsc PROPERTIES
