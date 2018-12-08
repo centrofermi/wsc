@@ -1,9 +1,15 @@
 #include <chrono>
 using namespace std::chrono_literals;
 
-#include <Windows.h>
-#include <SetupAPI.h>
-#pragma comment(lib, "Setupapi.lib")
+#include "compat.hpp"
+
+#ifdef WSC_ON_WIN
+# include <Windows.h>
+# include <SetupAPI.h>
+# pragma comment(lib, "Setupapi.lib")
+#else
+# include <directory.hpp>
+#endif // WSC_ON_WIN
 
 #include "com.hpp"
 
@@ -14,6 +20,7 @@ constexpr int speed = 9600;
 
 ComPorts enumerate()
 {
+#ifdef WSC_ON_WIN
   ComPorts names;
 
   DWORD size;
@@ -82,10 +89,26 @@ ComPorts enumerate()
   SetupDiDestroyDeviceInfoList(hdevinfo);
 
   return names;
+#else  // WSC_ON_WIN
+
+  auto dev = open_dir("/dev/");
+  auto const devices = matching_items(dev, "tty[A-Z]{3}[\\d]+");
+
+  ComPorts ports;
+  ports.reserve(devices.size());
+
+  for (auto&& dev : devices) {
+    ports.push_back("/dev/" + dev);
+  }
+
+  return ports;
+
+#endif // WSC_ON_WIN
 }
 
 void init_arduino(asio::serial_port& port)
 {
+#ifdef WSC_ON_WIN
   DCB dcbSerialParams = { 0 };
 
   GetCommState(port.native_handle(), &dcbSerialParams);
@@ -101,6 +124,15 @@ void init_arduino(asio::serial_port& port)
   PurgeComm(port.native_handle(), PURGE_RXCLEAR | PURGE_TXCLEAR);
 
   Sleep(2000);
+#else // WSC_ON_WIN
+  port.set_option(asio::serial_port::baud_rate(9600));
+  port.set_option(asio::serial_port::character_size(8));
+  port.set_option(asio::serial_port::stop_bits(asio::serial_port::stop_bits::one));
+  port.set_option(asio::serial_port::parity(asio::serial_port::parity::none));
+  port.set_option(asio::serial_port::flow_control(asio::serial_port::flow_control::hardware));
+
+  sleep(2);
+#endif // WSC_ON_WIN
 }
 
 // never call this function if other asynchronous operations are pending
