@@ -142,7 +142,7 @@ void Worker::run(
   , Worker::callback const& error_cb
 ) {
   std::thread th(
-    [&, data_cb, error_cb]() noexcept {
+    [&, port, output_file, data_cb, error_cb]() noexcept {
       Connection c(m_ctx, port, data_cb, error_cb);
 
       m_ctx.reset();
