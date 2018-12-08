@@ -66,6 +66,11 @@ int gui(asio::io_context& ctx)
   group curr_mgmt{ fm, "Current readings", true };
   curr_mgmt.div("<values gap=5 margin=[10,10,10,10]>");
 
+  textbox values { curr_mgmt };
+  values.multi_lines(true).editable(false);
+
+  curr_mgmt["values"] << values;
+
   // General window
   vbox.field("vbox") << conn_mgmt << out_mgmt << curr_mgmt;
 
