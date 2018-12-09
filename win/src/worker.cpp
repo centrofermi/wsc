@@ -69,7 +69,10 @@ class Connection
       std::error_code const& ec
     , std::size_t read_bytes
   ) {
-    if (ec == std::errc::operation_canceled) {
+    if (
+         ec == std::errc::operation_canceled
+      || ec == asio::error::operation_aborted
+    ) {
       return;
     } else if (ec) {
       m_error_cb(ec.message());
@@ -84,7 +87,10 @@ class Connection
 
   void timer_callback(std::error_code const& ec)
   {
-    if (ec == std::errc::operation_canceled) {
+    if (
+         ec == std::errc::operation_canceled
+      || ec == asio::error::operation_aborted
+    ) {
       return;
     } else if (ec) {
       m_error_cb(ec.message());
