@@ -149,6 +149,10 @@ void Worker::run(
   , Worker::callback const& data_cb
   , Worker::callback const& error_cb
 ) {
+  if (m_thread.joinable()) {
+    m_thread.join();
+  }
+
   std::thread th(
     [&, port, output_file, data_cb, error_cb]() noexcept {
       Connection c(m_ctx, port, data_cb, error_cb);
@@ -157,10 +161,6 @@ void Worker::run(
       m_ctx.run();
     }
   );
-
-  if (m_thread.joinable()) {
-    m_thread.join();
-  }
 
   std::swap(m_thread, th);
 }
