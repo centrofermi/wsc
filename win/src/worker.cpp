@@ -159,7 +159,6 @@ void Worker::stop()
 {
   if (running()) {
     m_ctx.stop();
-    m_thread.join();
   }
 }
 
