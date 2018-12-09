@@ -20,7 +20,7 @@ class Worker
 
   bool running() const
   {
-    return m_thread.joinable();
+    return !m_ctx.stopped();
   }
 
   void stop();
