@@ -35,6 +35,10 @@ class Worker
   ~Worker()
   {
     stop();
+
+    if (m_thread.joinable()) {
+      m_thread.join();
+    }
   }
 };
 

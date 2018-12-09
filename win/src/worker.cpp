@@ -152,6 +152,10 @@ void Worker::run(
     }
   );
 
+  if (m_thread.joinable()) {
+    m_thread.join();
+  }
+
   std::swap(m_thread, th);
 }
 
