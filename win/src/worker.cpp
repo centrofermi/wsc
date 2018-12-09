@@ -17,8 +17,10 @@ std::string getline(asio::streambuf& buffer)
 }
 
 using buf_iterator = asio::buffers_iterator<asio::streambuf::const_buffers_type>;
-std::pair<buf_iterator, bool>match_three_lines(buf_iterator begin, buf_iterator end)
-{
+
+std::pair<buf_iterator, bool> match_three_lines(
+    buf_iterator begin, buf_iterator end
+) {
   auto count = 0;
   auto it = begin;
   while (count != 3) {
