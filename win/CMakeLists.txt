@@ -19,6 +19,22 @@ if (WIN32)
     ${ZLIB_LIBRARY}
     ${NANA_LIBRARY}
   )
+
+  set(VCPKG_BIN_DIR "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/bin")
+
+  file(GLOB JPEG_DLL "${VCPKG_BIN_DIR}/jpeg*.dll")
+  file(GLOB PNG_DLL "${VCPKG_BIN_DIR}/libpng*.dll")
+  file(GLOB TURBOJPEG_DLL "${VCPKG_BIN_DIR}/turbojpeg*.dll")
+  file(GLOB ZLIB_DLL "${VCPKG_BIN_DIR}/zlib*.dll")
+
+  set(NANA_DLLS
+    ${JPEG_DLL}
+    ${PNG_DLL}
+    ${TURBOJPEG_DLL}
+    ${ZLIB_DLL}
+  )
+
+  install(FILES ${NANA_DLLS} DESTINATION .)
 else (WIN32)
   find_package(Threads REQUIRED)
   find_package(X11 REQUIRED)
@@ -50,3 +66,5 @@ target_compile_definitions(
   "STRICT"
   "_WINSOCK_DEPRECATED_NO_WARNINGS"
 )
+
+install(TARGETS wsc RUNTIME DESTINATION .)
