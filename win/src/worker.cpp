@@ -155,10 +155,15 @@ void Worker::run(
 
   std::thread th(
     [&, port, output_file, data_cb, error_cb]() noexcept {
-      Connection c(m_ctx, port, data_cb, error_cb);
+      try {
+        Connection c(m_ctx, port, data_cb, error_cb);
 
-      m_ctx.reset();
-      m_ctx.run();
+        m_ctx.reset();
+        m_ctx.run();
+      } catch (std::exception const& e) {
+        error_cb(e.what());
+        return;
+      }
     }
   );
 
