@@ -1,12 +1,10 @@
 #ifndef WSC_GUI_HPP
 #define WSC_GUI_HPP
 
-#include <asio.hpp>
-
 namespace eee {
 namespace wsc {
 
-int gui(asio::io_context& ctx);
+int gui();
 
 } // ns wsc
 } // ns eee

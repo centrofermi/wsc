@@ -4,6 +4,8 @@
 
 #include <algorithm>
 
+#include <asio.hpp>
+
 #include <nana/gui.hpp>
 #include <nana/gui/place.hpp>
 #include <nana/gui/filebox.hpp>
@@ -18,10 +20,11 @@ namespace wsc {
 
 // This function shall draw the graphical interface, then block until
 // the user issues an exit event.
-int gui(asio::io_context& ctx)
+int gui()
 {
   using namespace nana;
 
+  asio::io_context ctx;
 
   form fm { API::make_center(600, 400) };
   fm.caption("EEE Weather Station Control");

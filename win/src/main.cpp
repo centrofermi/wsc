@@ -1,5 +1,3 @@
-#include <asio.hpp>
-
 #include "compat.hpp"
 #include "gui.hpp"
 
@@ -13,7 +11,5 @@ int WINAPI WinMain(
 int main(
 #endif // WSC_ON_WIN
 ) {
-  asio::io_context ctx;
-
-  return eee::wsc::gui(ctx);
+  return eee::wsc::gui();
 }
