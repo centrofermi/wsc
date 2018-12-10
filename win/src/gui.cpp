@@ -83,7 +83,7 @@ int gui()
   fm.show();
 
   // Code associated with GUI events
-  auto com_update = [&]() {
+  auto const com_update = [&]() {
     auto const ports = probe_filter(ctx, enumerate());
 
     com.clear();
@@ -98,7 +98,7 @@ int gui()
     com.option(0);
   };
 
-  update_btn.events().click([&]() {
+  auto update_fn = [&]() {
     update_btn.enabled(false);
     start_btn.enabled(false);
     com.enabled(false);
@@ -108,7 +108,9 @@ int gui()
     com.enabled(true);
     start_btn.enabled(true);
     update_btn.enabled(true);
-  });
+  };
+
+  update_btn.events().click(update_fn);
 
   Worker worker;
 
