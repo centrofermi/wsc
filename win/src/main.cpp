@@ -2,6 +2,8 @@
 #include "gui.hpp"
 
 #ifdef WSC_ON_WIN
+# include <Windows.h>
+
 int WINAPI WinMain(
     HINSTANCE hInstance
   , HINSTANCE hPrevInstance
