@@ -159,9 +159,11 @@ int gui()
     }
   });
 
-  com_update();
+  std::thread startup(update_fn);
 
   exec();
+
+  startup.join();
 
   return EXIT_SUCCESS;
 }
