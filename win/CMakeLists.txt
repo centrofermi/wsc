@@ -65,6 +65,7 @@ target_compile_definitions(
   "WIN32_LEAN_AND_MEAN"
   "STRICT"
   "_WINSOCK_DEPRECATED_NO_WARNINGS"
+  "_CRT_SECURE_NO_WARNINGS"
 )
 
 install(TARGETS wsc RUNTIME DESTINATION .)
