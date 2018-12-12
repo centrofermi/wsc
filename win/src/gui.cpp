@@ -83,6 +83,8 @@ int gui()
 
   fm.show();
 
+  bool empty = false;
+
   // Code associated with GUI events
   auto const com_update = [&]() {
     auto const ports = probe_filter(ctx, enumerate());
@@ -93,7 +95,10 @@ int gui()
     }
 
     if (ports.empty()) {
+      empty = true;
       com.push_back("No port found");
+    } else {
+      empty = false;
     }
 
     com.option(0);
@@ -107,7 +112,7 @@ int gui()
     com_update();
 
     com.enabled(true);
-    start_btn.enabled(true);
+    start_btn.enabled(!empty);
     update_btn.enabled(true);
   };
 
@@ -140,7 +145,7 @@ int gui()
 
           com.enabled(true);
           stop_btn.enabled(false);
-          start_btn.enabled(true);
+          start_btn.enabled(!empty);
           update_btn.enabled(true);
           browse_btn.enabled(true);
           path.enabled(true);
