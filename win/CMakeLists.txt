@@ -51,7 +51,7 @@ else (WIN32)
   include_directories(${X11_INCLUDE_DIR} ${X11_Xft_INCLUDE_DIR})
 endif(WIN32)
 
-add_executable(wsc WIN32 src/main.cpp src/gui.cpp src/com.cpp src/worker.cpp)
+add_executable(wsc WIN32 src/main.cpp src/gui.cpp src/com.cpp src/worker.cpp src/serialization.cpp)
 target_link_libraries(wsc ${NANA_LIBRARIES})
 set_target_properties(
   wsc PROPERTIES
