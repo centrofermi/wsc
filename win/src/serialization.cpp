@@ -8,6 +8,15 @@
 namespace eee {
 namespace wsc {
 
+std::tm* localtime_b(std::time_t const* t, std::tm* ti)
+{
+#ifdef WSC_ON_WIN
+  return std::localtime_s(t, ti);
+#else
+  return localtime_r(t, ti);
+#endif
+}
+
 std::string mktime()
 {
   std::time_t rawtime;
