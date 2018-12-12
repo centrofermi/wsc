@@ -3,14 +3,17 @@ This project aims to provide programs to perform temperature, humidity,
 and pressure measurements by means of a BME280 sensor connected to an
 Arduino Mega 2560.
 
-It contains both Arduino sketch and GUI-based Windows application for the
-reading out data and putting into a text file on disk.
+It contains both Arduino sketch and GUI-based application for reading out
+data and putting into a text file on disk.
+
+The code can be built and run on both Windows and Linux.
 
 # Developer's notes
-## Build environment
 To build the code you will need a set of developer tools as well as a
-suited operating system:
+suited operating system. The code builds and runs on both Microsoft Windows
+and Linux operating systems.
 
+## MS Windows build environment
 - a recent version of Microsoft Windows 64-bit
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 - [CMake](https://cmake.org/)
