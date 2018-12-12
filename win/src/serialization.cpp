@@ -31,7 +31,7 @@ std::string mktime()
 }
 
 OutputFile::OutputFile(std::string const& filename)
-: m_file(filename.c_str())
+: m_file(filename.c_str(), std::ios_base::app)
 {
   if (!m_file) {
     auto const e = errno;
