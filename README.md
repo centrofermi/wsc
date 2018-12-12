@@ -60,7 +60,16 @@ vcpkg.exe export nana --raw --output %WSC%\wsc-dependencies\
 Download NSIS from the [official website](https://nsis.sourceforge.io/Main_Page)
 and install it in the default folder.
 
+### Build
+In a `Developer Command Prompt for VS 2017`:
+
 ```shell
-cd installation\path\of\vcpkg\
-vcpkg.exe install nana:x64-windows nana:x86-windows
+cd %WSC%
+mkdir build
+cd build
+cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DVCPKG_TARGET_TRIPLET=x86-windows -DCMAKE_TOOLCHAIN_FILE="../wsc-dependencies/scripts/buildsystems/vcpkg.cmake" ..
+nmake
+REM the following is optional: to build the Windows install program
+cpack
 ```
+
