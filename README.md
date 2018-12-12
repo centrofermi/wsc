@@ -14,6 +14,10 @@ suited operating system. The code builds and runs on both Microsoft Windows
 and Linux operating systems.
 
 ## MS Windows build environment
+In the following text `%WSC%` represents the folder where the WSC source
+repository is located.
+
+### Requirements
 - a recent version of Microsoft Windows 64-bit
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 - [CMake](https://cmake.org/) v3.10 or newer
