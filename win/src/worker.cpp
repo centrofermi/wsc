@@ -5,6 +5,8 @@
 
 #include "worker.hpp"
 
+#include "serialization.hpp"
+
 namespace eee {
 namespace wsc {
 
@@ -51,6 +53,7 @@ std::pair<buf_iterator, bool> match_three_lines(
 class Connection
 {
   ComPort m_port;
+  OutputFile m_outputfile;
   asio::steady_timer m_timer;
   Worker::callback m_data_cb;
   Worker::callback m_error_cb;
@@ -121,9 +124,11 @@ class Connection
   Connection(
       asio::io_context& ctx
     , std::string const& port
+    , std::string const& output_file
     , Worker::callback const& data_cb
     , Worker::callback const& error_cb
   ) : m_port(ctx)
+    , m_outputfile(output_file)
     , m_timer(ctx)
     , m_data_cb(data_cb)
     , m_error_cb(error_cb)
@@ -156,7 +161,7 @@ void Worker::run(
   std::thread th(
     [&, port, output_file, data_cb, error_cb]() noexcept {
       try {
-        Connection c(m_ctx, port, data_cb, error_cb);
+        Connection c(m_ctx, port, output_file, data_cb, error_cb);
 
         m_ctx.reset();
         m_ctx.run();
