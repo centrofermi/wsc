@@ -19,8 +19,7 @@ std::tm* localtime_b(std::time_t const* t, std::tm* ti)
 
 std::string mktime()
 {
-  std::time_t rawtime;
-  std::time(&rawtime);
+  auto const rawtime = std::time(nullptr);
 
   char buffer[13]; // Just enough to contain '201801281520\0'
   std::tm timeinfo;
