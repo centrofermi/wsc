@@ -98,14 +98,14 @@ above.
 On a Ubuntu system, the following instructions should be sufficient:
 
 ```shell
-apt update
-apt install -y git cmake build-essential libx11-dev libxft-dev
+sudo apt update
+sudo apt install -y git cmake build-essential libx11-dev libxft-dev
 git clone https://github.com/cnjinhao/nana.git
 cd nana/
 mkdir bb
 cd bb/
 cmake ../ -DCMAKE_BUILD_TYPE=Release
-make install -j
+sudo make install -j
 ```
 
 ### Build
