@@ -98,7 +98,7 @@ class Connection
     } else {
       char const command[] = "tph";
       std::error_code ec;
-      asio::write(m_port, asio::buffer(command, sizeof(command)), ec);
+      asio::write(m_port, asio::buffer(command, sizeof(command) - 1), ec);
 
       if (ec) {
         m_error_cb(ec.message());
