@@ -81,9 +81,19 @@ class Connection
       m_error_cb(ec.message());
       return;
     } else {
-      m_data_cb(getline(m_buffer));
-      m_data_cb(getline(m_buffer));
-      m_data_cb(getline(m_buffer));
+      auto const in_temp_line = getline(m_buffer);
+      auto const pressure_line = getline(m_buffer);
+      auto const humidity_line = getline(m_buffer);
+
+      m_data_cb(in_temp_line);
+      m_data_cb(pressure_line);
+      m_data_cb(humidity_line);
+
+      auto const in_temp = std::stof(in_temp_line.substr(3));
+      auto const pressure = std::stof(pressure_line.substr(3));
+
+      m_outputfile.write(in_temp, in_temp, pressure);
+
       put_timer();
     }
   }
