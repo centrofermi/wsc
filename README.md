@@ -22,8 +22,12 @@ and Linux operating systems.
 - [Nullsoft Scriptable Install System (NSIS)](https://nsis.sourceforge.io/Main_Page) (optional, for creating the installer)
 
 ### Operating system
-A 64-bit MS Windows OS is required. The procedure has been tested on
-`Windows 7 Ultimate` and `Windows 10`.
+A 64-bit MS Windows OS is required<sup>1</sup>. The procedure has been
+tested on `Windows 7 Ultimate` and `Windows 10`.
+
+<sup>1</sup> It is actually required to build `VCPKG`, that in turn is
+needed to build `nana`. If you find another easy way to do so, you may use
+your 32-bit MS Windows system.
 
 ### Arduino
 1. Install `Arduino IDE`.
