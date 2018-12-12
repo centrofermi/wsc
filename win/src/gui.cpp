@@ -136,6 +136,8 @@ int gui()
           values.append(message, true);
           worker.stop();
 
+          update_fn();
+
           com.enabled(true);
           stop_btn.enabled(false);
           start_btn.enabled(true);
