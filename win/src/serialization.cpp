@@ -9,12 +9,12 @@
 namespace eee {
 namespace wsc {
 
-std::tm* localtime_b(std::time_t const* t, std::tm* ti)
+void localtime_b(std::time_t const* t, std::tm* ti)
 {
 #ifdef WSC_ON_WIN
-  return std::localtime_s(t, ti);
+  std::localtime_s(ti, t);
 #else
-  return localtime_r(t, ti);
+  localtime_r(t, ti);
 #endif
 }
 
