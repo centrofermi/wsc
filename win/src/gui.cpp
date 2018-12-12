@@ -63,7 +63,7 @@ int gui()
 
   out_mgmt["daq"] << start_btn << stop_btn;
 
-  filebox fb(true);
+  filebox fb(false);
   fb.add_filter( ("VWS file"), ("dbase.csv"));
 
   // Current values group
