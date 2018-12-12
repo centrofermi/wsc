@@ -73,3 +73,50 @@ REM the following is optional: to build the Windows install program
 cpack
 ```
 
+## Linux build environment
+In the following text `$WSC` represents the folder where the WSC source
+repository is located.
+
+### Requirements
+- a recent version of a Linux distibution (such as Ubuntu 18.04 or ArchLinux)
+- [Arduino IDE](https://www.arduino.cc/en/Main/Software)
+- [CMake](https://cmake.org/) v3.10 or newer
+- GNU Make
+- GNU Compiler Collection (gcc) 5 or newer
+- [nana C++ library](http://nanapro.org/)
+
+### Arduino
+1. Install `Arduino IDE`.
+1. In `Arduino IDE` go to "Tools->Library management".
+1. Install both `Adafruit Unified Sensors` and `Adafruit BME280 Library`.
+
+### Other programs and libraries
+Follow the general instructions provided by your Linux distribution and/or
+the specific for each component to install all the requirements listed
+above.
+
+On a Ubuntu system, the following instructions should be sufficient:
+
+```shell
+apt update
+apt install -y git cmake build-essential libx11-dev libxft-dev
+git clone https://github.com/cnjinhao/nana.git
+cd nana/
+mkdir bb
+cd bb/
+cmake ../ -DCMAKE_BUILD_TYPE=Release
+make install -j
+```
+
+### Build
+In a shell:
+
+```shell
+cd $WSC
+mkdir -p build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ../
+make
+# the following is optional: to build selfextracting tar archive
+cpack
+```
