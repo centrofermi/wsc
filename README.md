@@ -44,7 +44,22 @@ downloadable from [Microsoft Website](https://visualstudio.microsoft.com/it/down
 2. Install at least the following components:
   * C++ Desktop Workload
   * Git for Windows
-3. Install `vcpkg` and:
+
+### VCPKG
+Install `vcpkg` and the `nana` library:
+
+```shell
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+bootstrap-vcpkg.bat
+vcpkg.exe install nana:x86-windows
+vcpkg.exe export nana --raw --output %WSC%\wsc-dependencies\
+```
+
+### NSIS
+Download NSIS from the [official website](https://nsis.sourceforge.io/Main_Page)
+and install it in the default folder.
+
 ```shell
 cd installation\path\of\vcpkg\
 vcpkg.exe install nana:x64-windows nana:x86-windows
