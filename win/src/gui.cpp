@@ -65,6 +65,7 @@ int gui()
 
   filebox fb(false);
   fb.add_filter( ("VWS file"), ("dbase.csv"));
+  fb.init_file("dbase.csv");
 
   // Current values group
   group curr_mgmt{ fm, "Current readings", true };
