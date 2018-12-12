@@ -2,6 +2,7 @@
 #define WSC_SERIALIZATION_HPP
 
 #include <fstream>
+#include <string>
 
 namespace eee {
 namespace wsc {
