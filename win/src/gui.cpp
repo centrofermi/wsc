@@ -122,9 +122,12 @@ int gui()
     browse_btn.enabled(false);
     path.enabled(false);
 
+    std::string filename;
+    path.getline(0, filename);
+
     worker.run(
         com.text(com.option())
-      , fb.file()
+      , filename
       , [&](std::string const& message) {
           values.append(message, true);
         }
