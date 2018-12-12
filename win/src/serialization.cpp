@@ -40,7 +40,7 @@ OutputFile::OutputFile(std::string const& filename)
   }
 }
 
-int OutputFile::write(double in_temp, double out_temp, double pressure)
+std::streamoff OutputFile::write(double in_temp, double out_temp, double pressure)
 {
   auto const beginning = m_file.tellp();
   // Column  0 - Date & Time;

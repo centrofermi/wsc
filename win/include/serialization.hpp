@@ -18,7 +18,7 @@ class OutputFile
   explicit
   OutputFile(std::string const& filename);
 
-  int write(double in_temp, double out_temp, double pressure);
+  std::streamoff write(double in_temp, double out_temp, double pressure);
 };
 
 } // ns wsc
