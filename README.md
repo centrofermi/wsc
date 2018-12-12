@@ -16,7 +16,7 @@ and Linux operating systems.
 ## MS Windows build environment
 - a recent version of Microsoft Windows 64-bit
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [CMake](https://cmake.org/)
+- [CMake](https://cmake.org/) v3.10 or newer
 - Microsoft [Visual Studio Community Edition](https://visualstudio.microsoft.com/it/downloads/)
 - Microsoft [VCPKG](https://github.com/Microsoft/vcpkg)
 
