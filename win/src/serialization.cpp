@@ -1,4 +1,5 @@
 #include "serialization.hpp"
+#include "compat.hpp"
 
 #include <ctime>
 #include <cerrno>
