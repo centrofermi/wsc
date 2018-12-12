@@ -115,6 +115,13 @@ int gui()
   Worker worker;
 
   start_btn.events().click([&]() {
+    com.enabled(false);
+    start_btn.enabled(false);
+    stop_btn.enabled(true);
+    update_btn.enabled(false);
+    browse_btn.enabled(false);
+    path.enabled(false);
+
     worker.run(
         com.text(com.option())
       , fb.file()
@@ -133,13 +140,6 @@ int gui()
           path.enabled(true);
         }
     );
-
-    com.enabled(false);
-    start_btn.enabled(false);
-    stop_btn.enabled(true);
-    update_btn.enabled(false);
-    browse_btn.enabled(false);
-    path.enabled(false);
   });
 
   stop_btn.events().click([&]() {
