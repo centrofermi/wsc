@@ -12,7 +12,7 @@ namespace wsc {
 void localtime_b(std::time_t const* t, std::tm* ti)
 {
 #ifdef WSC_ON_WIN
-  std::localtime_s(ti, t);
+  localtime_s(ti, t);
 #else
   localtime_r(t, ti);
 #endif
