@@ -19,6 +19,7 @@ and Linux operating systems.
 - [CMake](https://cmake.org/) v3.10 or newer
 - Microsoft [Visual Studio Community Edition](https://visualstudio.microsoft.com/it/downloads/)
 - Microsoft [VCPKG](https://github.com/Microsoft/vcpkg)
+- [Nullsoft Scriptable Install System (NSIS)](https://nsis.sourceforge.io/Main_Page) (optional, for creating the installer)
 
 ### Operating system
 A 64-bit MS Windows OS is required. The procedure has been tested on
