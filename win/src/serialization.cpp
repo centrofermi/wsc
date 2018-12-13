@@ -18,6 +18,15 @@ void localtime_b(std::time_t const* t, std::tm* ti)
 #endif
 }
 
+void gmtime_b(std::time_t const* t, std::tm* ti)
+{
+#ifdef WSC_ON_WIN
+  gmtime_s(ti, t);
+#else
+  gmtime_r(t, ti);
+#endif
+}
+
 std::string mktime()
 {
   auto const rawtime = std::time(nullptr);
