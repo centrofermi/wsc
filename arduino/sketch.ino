@@ -9,9 +9,9 @@ auto constexpr speed = 9600;
 
 void setup() {
   Serial.begin(speed);
-  auto const status = bme.begin();
+  auto const bme_status = bme.begin();
 
-  if (status == 0) {
+  if (bme_status == 0) {
     Serial.println("BME error");
   }
 }
