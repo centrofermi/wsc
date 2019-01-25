@@ -36,7 +36,11 @@ your 32-bit MS Windows system.
 ### Arduino
 1. Install `Arduino IDE`.
 1. In `Arduino IDE` go to "Tools->Library management".
-1. Install both `Adafruit Unified Sensors` and `Adafruit BME280 Library`.
+1. Install the following libraries:
+  * `Adafruit Unified Sensors`
+  * `Adafruit BME280 Library`
+  * `OneWire`
+  * `DallasTemperature`.
 
 ### Visual Studio
 1. Install Visual Studio 2017 Community Edition, that is free to use and
@@ -88,7 +92,11 @@ repository is located.
 ### Arduino
 1. Install `Arduino IDE`.
 1. In `Arduino IDE` go to "Tools->Library management".
-1. Install both `Adafruit Unified Sensors` and `Adafruit BME280 Library`.
+1. Install the following libraries:
+  * `Adafruit Unified Sensors`
+  * `Adafruit BME280 Library`
+  * `OneWire`
+  * `DallasTemperature`.
 
 ### Other programs and libraries
 Follow the general instructions provided by your Linux distribution and/or
