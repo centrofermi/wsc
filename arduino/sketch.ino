@@ -31,7 +31,7 @@ void loop() {
     } else {
       Serial.println(
           "Usage:\n"                 \
-          " - 't' for temperature\n" \
+          " - 't' for inside temperature\n" \
           " - 'h' for humidity\n"    \
           " - 'p' for pressure"
       );
