@@ -33,7 +33,7 @@ std::string mktime()
 
   char buffer[13]; // Just enough to contain '201801281520\0'
   std::tm timeinfo;
-  localtime_b(&rawtime, &timeinfo);
+  gmtime_b(&rawtime, &timeinfo);
   std::strftime(buffer, 13, "%Y%m%d%H%M", &timeinfo);
 
   return buffer;
