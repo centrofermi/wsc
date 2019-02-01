@@ -64,7 +64,7 @@ class Connection
     using namespace std::placeholders;
     using namespace std::chrono_literals;
 
-    m_timer.expires_from_now(1s);
+    m_timer.expires_from_now(5min);
     m_timer.async_wait(std::bind(&Connection::timer_callback, this, _1));
   }
 
