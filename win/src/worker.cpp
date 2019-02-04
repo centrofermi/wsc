@@ -61,11 +61,10 @@ class Connection
 
   void put_timer()
   {
-    using namespace std::placeholders;
     using namespace std::chrono_literals;
 
     m_timer.expires_from_now(5min);
-    m_timer.async_wait(std::bind(&Connection::timer_callback, this, _1));
+    m_timer.async_wait([&](auto const& error) { timer_callback(error); });
   }
 
   void read_callback(
@@ -118,13 +117,13 @@ class Connection
         m_error_cb(ec.message());
         return;
       } else {
-        using namespace std::placeholders;
-
         asio::async_read_until(
             m_port
           , m_buffer
           , match_three_lines
-          , std::bind(&Connection::read_callback, this, _1, _2)
+          , [&](auto const& error, auto bytes_read) {
+              read_callback(error, bytes_read);
+            }
         );
       }
     }
