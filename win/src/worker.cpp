@@ -155,7 +155,7 @@ class Connection
     ctx.reset();
     init_arduino(m_port);
 
-    put_timer();
+    timer_callback(std::error_code());
   }
 };
 
