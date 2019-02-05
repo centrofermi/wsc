@@ -84,17 +84,20 @@ class Connection
       auto const pressure_line = getline(m_buffer);
       auto const out_temp_line = getline(m_buffer);
 
-      m_data_cb(in_temp_line);
-      m_data_cb(pressure_line);
-      m_data_cb(out_temp_line);
+      if (in_temp_line.empty() || pressure_line.empty() || out_temp_line.empty()) {
+        put_timer(1s);
+      } else {
+        m_data_cb(in_temp_line);
+        m_data_cb(pressure_line);
+        m_data_cb(out_temp_line);
 
-      auto const in_temp = std::stof(in_temp_line.substr(3));
-      auto const pressure = std::stof(pressure_line.substr(3));
-      auto const out_temp = std::stof(out_temp_line.substr(3));
+        auto const in_temp = std::stof(in_temp_line.substr(3));
+        auto const pressure = std::stof(pressure_line.substr(3));
+        auto const out_temp = std::stof(out_temp_line.substr(3));
 
-      m_outputfile.write(in_temp, out_temp, pressure);
-
-      put_timer();
+        m_outputfile.write(in_temp, out_temp, pressure);
+        put_timer();
+      }
     }
   }
 
