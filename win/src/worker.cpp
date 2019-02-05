@@ -50,6 +50,8 @@ std::pair<buf_iterator, bool> match_three_lines(
   }
 }
 
+using namespace std::chrono_literals;
+
 class Connection
 {
   ComPort m_port;
@@ -59,11 +61,9 @@ class Connection
   Worker::callback m_error_cb;
   asio::streambuf m_buffer;
 
-  void put_timer()
+  void put_timer(std::chrono::seconds const& time = 5min)
   {
-    using namespace std::chrono_literals;
-
-    m_timer.expires_from_now(5min);
+    m_timer.expires_from_now(time);
     m_timer.async_wait([&](auto const& error) { timer_callback(error); });
   }
 
