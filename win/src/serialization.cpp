@@ -55,13 +55,13 @@ std::streamoff OutputFile::write(double in_temp, double out_temp, double pressur
   // Column  0 - Date & Time;
   // Column  6 - In Temp;
   // Column  7 - Out Temp;
-  // Column 23 - SL Barometer.
+  // Column 23 - SL Barometer, hPa
 
   m_file
     << mktime() << ",0,0,0,0,0,"
     << in_temp  << ','
     << out_temp << ",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"
-    << (pressure - sea_level_pressure) << std::endl;
+    << pressure / 100. << std::endl;
 
   return m_file.tellp() - beginning;
 }

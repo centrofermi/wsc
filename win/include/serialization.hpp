@@ -13,8 +13,6 @@ class OutputFile
 
  public:
 
-  auto static constexpr sea_level_pressure = 101325; // Pa
-
   explicit
   OutputFile(std::string const& filename);
 
